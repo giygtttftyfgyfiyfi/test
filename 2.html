@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+        #box>img{
+            width: 100px;
+            height: 100px;
+            position:absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+
+</div>
+    <script type="text/javascript">
+    let box = document.getElementById("box");
+
+    for(i = 0;i<4;i++){ //0 1
+      for(j = 0;j<4;j++){   //0
+            let img = document.createElement("img");
+            img.style.left=j*100+"px";
+            img.style.top=i*100+"px";
+            img.src="./img2/0.jpg";
+            box.appendChild(img);
+      }
+    }
+    // 声明一个数组,里面存放图片名
+    let imgcount = ["1","2","3","4","5","6","7","8","1","2","3","4","5","6","7","8"]
+    // 声明一个变量，里面存放随机数
+    let count;
+    // 想当于地图，与页面的图片一一对应(以后要通过这个数组来放图片)
+    let imgmap = [
+        [0,0,0,0],
+        [0,0,0,0],
+        [0,0,0,0],
+        [0,0,0,0],
+    ]
+    // 打印出原数组
+    console.log(imgcount)
+    // // console.log(imgmap[1][2])
+    // 双for循环遍历imgmap数组
+    for(a= 0;a<imgmap.length;a++){
+        for(b = 0;b<imgmap[a].length;b++){
+            // 通过随机数来给count赋值,取值范围为0~imgcount数组的长度(15)
+            // count会取到0~15
+             count =  Math.floor(Math.random()*imgcount.length);
+             // 把imgmap数组的第a个中第b个的值替换成imgcount里下标为count的值(count为随机数)
+             imgmap[a][b] = imgcount[count];
+             // 通过splice来删除imgcount下标为count的值(count为随机数),保证下次循环不会再循环到同样的图片名(只允许出现两次,因为翻牌是一一对应的)
+             imgcount.splice(count,1);
+             // 打印出删除过的值
+             console.log(imgcount)
+        }
+        // console.log(a)
+    }
+    // 打印出随机出来的imgmap数组
+    console.log(imgmap)
+    // console.log(Math.floor(Math.random()*100));
+
+
+
+
+    </script>
+</body>
+</html>
